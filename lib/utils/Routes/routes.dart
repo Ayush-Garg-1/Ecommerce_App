@@ -1,0 +1,3 @@
+var appRoutes = {
+  "/opt-screen"
+};
