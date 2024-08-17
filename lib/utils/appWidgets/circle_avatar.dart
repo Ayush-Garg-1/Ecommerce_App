@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:cached_network_image/cached_network_image.dart';
-
 class CustomCircleAvatar extends StatelessWidget {
   String? imagePath;
   CustomCircleAvatar({this.imagePath});
@@ -16,7 +14,7 @@ class CustomCircleAvatar extends StatelessWidget {
               width: 80,
               height: 80,
               decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).secondaryHeaderColor,
                   borderRadius: BorderRadius.circular(50),
                   boxShadow: [
                     BoxShadow(color: Colors.grey.withOpacity(0.4), blurRadius: 10)

@@ -8,7 +8,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DataBaseHelper {
-  final String _dbFileName ="nishu";
+  final String _dbFileName ="ecommerce_app";
   final String productTableName = "products";
   final String userTableName = "users";
   final String cartTableName = "cartProduct";
@@ -192,47 +192,6 @@ class DataBaseHelper {
     }
   }
 
-  // Future<List<ProductModel>> getCategoryWiseProducts(List<String> categories) async{
-  //   try{
-  //     print(categories);
-  //     Database dbClient = await getDatabase;
-  //     List<Map<String,dynamic>> productsMap=[];
-  //     List<ProductModel> categoriesWiseProducts = [];
-  //     for(int i=0;i<categories.length;i++) {
-  //       if (categories[i] == "all") {
-  //         categoriesWiseProducts=[];
-  //         productsMap = await dbClient.rawQuery("SELECT * FROM $productTableName");
-  //         for (var productMap in productsMap) {
-  //           try {
-  //             ProductModel product = ProductModel.fromJson(productMap);
-  //             categoriesWiseProducts.add(product);
-  //           } catch (e) {
-  //             print("Error processing product: $e");
-  //           }
-  //         }
-  //         break;
-  //       }
-  //       else {
-  //         productsMap = await dbClient.rawQuery(
-  //             "SELECT * FROM products WHERE category=?", [categories[i]]);
-  //         for (var productMap in productsMap) {
-  //           try {
-  //             ProductModel product = ProductModel.fromJson(productMap);
-  //             categoriesWiseProducts.add(product);
-  //           } catch (e) {
-  //             print("Error processing product: $e");
-  //           }
-  //         }
-  //       }
-  //     }
-  //
-  //
-  //     return categoriesWiseProducts;
-  //   }catch(e){
-  //     print(e.toString());
-  //     return [];
-  //   }
-  // }
 
   Future<List<ProductModel>> getCategoryWiseProducts(String category,bool limit) async{
     print(category);
@@ -378,33 +337,6 @@ Future<List<CartProductModel>> getCartProducts() async {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   // User Table Code
 
   Future insertUser(Map<String,dynamic> user) async {
@@ -487,7 +419,6 @@ Future<List<CartProductModel>> getCartProducts() async {
     List<Map<String, dynamic>> mapUser = await dbClient.rawQuery("SELECT * FROM $userTableName WHERE email=?",[email]) ;
     UsersModel user = UsersModel.fromJson(mapUser[0]);
     return user;
-
   }
 
 }

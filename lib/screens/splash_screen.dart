@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../services/shared_preference_service.dart';
+import '../utils/themes/colors.dart';
 
 class SplashScreen extends StatelessWidget {
 
@@ -33,9 +34,8 @@ class SplashScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                         colors: [
-                          Colors.red.withOpacity(0.3),
-                          Colors.yellow.withOpacity(0.3)
-                        ],
+                          LITE_RED_COLOR,
+                          LITE_YELLOW_COLOR                        ],
                         begin:Alignment.topRight,
                         end: Alignment.bottomLeft
                     ),

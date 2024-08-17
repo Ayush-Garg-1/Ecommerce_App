@@ -1,114 +1,132 @@
+import 'dart:io';
 
+import 'package:ecommerce/bloc/userScreenBloc/user_bloc.dart';
+import 'package:ecommerce/bloc/userScreenBloc/user_event.dart';
+import 'package:ecommerce/utils/appWidgets/Circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../bloc/userScreenBloc/user_state.dart';
 import '../../services/shared_preference_service.dart';
+import 'dialog.dart';
+
 class CustomDrawer extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      child: ListView(
-        children: [
-          UserAccountsDrawerHeader(
-            decoration: BoxDecoration(color: Colors.red),
-            currentAccountPicture: CircleAvatar(
-              backgroundColor: Colors.white,
-              backgroundImage:
-              NetworkImage("ggg"),
-            ),
-            accountName: Text("",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
+    return BlocProvider(
+      create: (context) =>
+      UserBloc()
+        ..add(FetchUserEvent()),
+      child:
+      BlocBuilder<UserBloc, UserState>(
+        builder: (context, state) {
+          if(state is LoadedUserState){
+            return Drawer(
+              child: ListView(
+                children: [
+                  Container(
+                    height: 200,
+                    child: UserAccountsDrawerHeader(
+
+                      decoration: BoxDecoration(
+                          color:  Theme.of(context).primaryColor),
+                      currentAccountPicture:     CircleAvatar(
+                        radius: 60,
+                        backgroundColor:  Theme.of(context).secondaryHeaderColor,
+                        child: Stack(
+                          children: [
+                            CircleAvatar(
+                              radius: 55,
+                              backgroundImage: state.user.image.toString() !=
+                                  "assets/images/user.png"
+                                  ? FileImage(
+                                  File(state.user.image.toString()))
+                                  : AssetImage(state.user.image.toString()),
+                            ),
+                            Positioned(
+                              right: 0,
+                              bottom: 0,
+                              child: InkWell(
+                                onTap: () {
+                                  CustomDialog(context: context, userBloc: BlocProvider.of<UserBloc>(context));
+                                },
+                                child: CircleAvatar(
+                                  radius: 17,
+                                  backgroundColor:  Theme.of(context).secondaryHeaderColor,
+                                  child: Icon(
+                                    Icons.camera_alt,
+                                    size: 17,
+                                    color:  Theme.of(context).primaryColor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      accountName: Padding(
+                        padding: const EdgeInsets.only(left: 8),
+                        child: Text(state.user.name.toString(),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).secondaryHeaderColor
+                          ),
+                        ),
+                      ),
+                      accountEmail: Padding(
+                        padding: const EdgeInsets.only(left: 8),
+                        child: Text(state.user.email.toString(),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                              color: Theme.of(context).secondaryHeaderColor
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(
+                      Icons.home,
+                    ),
+                    title: const Text('Home'),
+                    onTap: () {
+                      Navigator.pushReplacementNamed(context, "/layout-screen");
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(
+                      Icons.logout_rounded,
+                    ),
+                    title: const Text('Logout'),
+                    onTap: () async {
+                      context
+                          .read<UserBloc>()
+                          .add(LogoutUserEvent());
+                      Navigator.pushReplacementNamed(context, "/login-screen");
+                    },
+                  ),
+                  AboutListTile(
+                    // <-- SEE HERE
+                    icon: Icon(
+                      Icons.info,
+                    ),
+                    child: Text('About app'),
+                    applicationIcon: Icon(
+                      Icons.local_play,
+                    ),
+                    applicationName: 'Ecommerce App',
+                    applicationVersion: state.appVersion.toString(),
+                    applicationLegalese: '© 2024 company name',
+                  ),
+                ],
               ),
-            ),
-            accountEmail: Text("ayus",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          ListTile(
-            leading: Icon(
-              Icons.home,
-            ),
-            title: const Text('Home'),
-            onTap: () {
-            },
-          ),
-          ListTile(
-            leading: Icon(
-              Icons.edit,
-            ),
-            title: const Text('Edit Profile'),
-            onTap: () {
-            },
-          ),
-          ListTile(
-            leading: Icon(
-              Icons.logout_rounded,
-            ),
-            title: const Text('Logout'),
-            onTap: () async {
-              await SharedPreferenceService.setUserLogin("IsLogin", false);
-              Navigator.pushReplacementNamed(context, "login-page");
-            },
-          ),
-          // Obx(() {
-          //   List<String> categories =
-          //   productsController.getProductsCategories();
-          //   String? category;
-          //   String cat = productsController.Category.value;
-          //   if (!cat.isEmpty) {
-          //     category = cat;
-          //   }
-          //
-          //   return Padding(
-          //     padding: const EdgeInsets.symmetric(horizontal: 16),
-          //     child: DropdownButton(
-          //         value: category,
-          //         elevation: 0,
-          //         hint: Row(children: [
-          //           Icon(
-          //             Icons.category,
-          //           ),
-          //           HorizontalSpacing(size: 10),
-          //           Text("Categories")
-          //         ]),
-          //         items: categories.map((e) {
-          //           return DropdownMenuItem(
-          //               value: e,
-          //               child: Row(
-          //                 children: [
-          //                   Icon(
-          //                     Icons.arrow_forward,
-          //                   ),
-          //                   Text(e)
-          //                 ],
-          //               ));
-          //         }).toList(),
-          //         onChanged: (value) {
-          //           productsController.Category.value = value.toString();
-          //           Get.to(SingleCategoryPage(
-          //             category: value.toString(),
-          //           ));
-          //         }),
-          //   );
-          // }),
-          //
-          // // }),
-          AboutListTile(
-            // <-- SEE HERE
-            icon: Icon(
-              Icons.info,
-            ),
-            child: Text('About app'),
-            applicationIcon: Icon(
-              Icons.local_play,
-            ),
-            applicationName: 'My Cool App',
-            applicationVersion: '1.0.25',
-            applicationLegalese: '© 2019 Company',
-          ),
-        ],
+            );
+          }
+          return CustomCircularProgressIndicator();
+        },
       ),
     );
   }
 }
+
+

@@ -10,6 +10,8 @@ import 'package:ecommerce/utils/appWidgets/horizontal-space.dart';
 import 'package:ecommerce/utils/appWidgets/vertical_space.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../utils/themes/colors.dart';
+
 class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -30,8 +32,8 @@ class ProfileScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      Colors.red.withOpacity(0.3),
-                      Colors.yellow.withOpacity(0.3),
+                      LITE_RED_COLOR,
+                      LITE_YELLOW_COLOR
                     ],
                     begin: Alignment.topRight,
                     end: Alignment.bottomLeft,
@@ -44,7 +46,7 @@ class ProfileScreen extends StatelessWidget {
                         VerticalSpacing(size: 70),
                         CircleAvatar(
                           radius: 60,
-                          backgroundColor: Colors.white,
+                          backgroundColor: Theme.of(context).secondaryHeaderColor,
                           child: Stack(
                             children: [
                               CircleAvatar(
@@ -64,11 +66,11 @@ class ProfileScreen extends StatelessWidget {
                                   },
                                   child: CircleAvatar(
                                     radius: 17,
-                                    backgroundColor: Colors.orangeAccent,
+                                    backgroundColor: Theme.of(context).primaryColor,
                                     child: Icon(
                                       Icons.camera_alt,
                                       size: 17,
-                                      color: Colors.white,
+                                      color: Theme.of(context).secondaryHeaderColor,
                                     ),
                                   ),
                                 ),
@@ -79,7 +81,7 @@ class ProfileScreen extends StatelessWidget {
                         VerticalSpacing(size: 70),
                         Container(
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Theme.of(context).secondaryHeaderColor,
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(30),
                               topRight: Radius.circular(30),
@@ -91,20 +93,20 @@ class ProfileScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 buildContactInfo(
-                                    Icons.person, state.user.name.toString()),
+                                    Icons.person, state.user.name.toString(),context),
                                 buildContactInfo(
-                                    Icons.email, state.user.email.toString()),
+                                    Icons.email, state.user.email.toString(),context),
                                 buildContactInfo(
-                                    Icons.phone, state.user.phone.toString()),
+                                    Icons.phone, state.user.phone.toString(),context),
                                 VerticalSpacing(size: 55),
                                 CommonButton(
                                   buttonText: "Edit Profile",
-                                  color: Colors.orange,
+                                  color: Theme.of(context).primaryColor,
                                 ),
                                 VerticalSpacing(size: 20),
                                 CommonButton(
                                   buttonText: "Logout",
-                                  color: Colors.orange,
+                                  color: Theme.of(context).primaryColor,
                                   callback: () {
                                     context
                                         .read<UserBloc>()
@@ -135,16 +137,16 @@ class ProfileScreen extends StatelessWidget {
 
 
 
-  Widget buildContactInfo(IconData icon, String text) {
+  Widget buildContactInfo(IconData icon, String text,var context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 40),
       child: Row(
         children: [
-          Icon(icon, size: 20, color: Colors.orangeAccent),
+          Icon(icon, size: 20, color: Theme.of(context).primaryColor),
           HorizontalSpacing(size: 10),
           Text(
             text,
-            style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+            style: TextStyle(fontSize: 14),
           ),
         ],
       ),

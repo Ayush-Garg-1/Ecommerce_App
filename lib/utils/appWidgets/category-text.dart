@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../themes/colors.dart';
+
 class CategoryText extends StatelessWidget {
   String text;
   CategoryText({required this.text});
@@ -12,7 +14,7 @@ class CategoryText extends StatelessWidget {
           decoration: TextDecoration.underline,
           fontWeight: FontWeight.bold,
           fontSize: 50,
-          color: Colors.black),
+          color: BLACK_COLOR),
     );
   }
 }

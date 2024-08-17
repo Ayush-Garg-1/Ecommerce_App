@@ -5,34 +5,36 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../bloc/cartBloc/cart_bloc.dart';
 import '../../bloc/cartBloc/cart_event.dart';
+import '../themes/colors.dart';
 import 'horizontal-space.dart';
 
- Widget CustomDismissibleWidget({required CartProductModel product,required CartBloc cartBloc}){
+ Widget CustomDismissibleWidget({context,required CartProductModel product,required CartBloc cartBloc}){
     return Dismissible(
       key: ValueKey(product.id),
       background: Container(
-        color: Colors.red,
+        color: RED_COLOR,
         child: Align(
           alignment: Alignment.centerRight,
           child: Padding(
             padding: EdgeInsets.only(right: 20),
-            child: Icon(Icons.delete, color: Colors.white),
+            child: Icon(Icons.delete, color: Theme.of(context).secondaryHeaderColor),
           ),
         ),
       ),
       direction: DismissDirection.endToStart,
       onDismissed: (direction) {
         cartBloc.add(DeleteCartProductEvent(id: product.id!));
+        cartBloc.add(FetchCartProductEvent());
       },
       child: Container(
           margin: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
           padding: EdgeInsets.only(left: 10, right: 20, top: 10, bottom: 10),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: Colors.white,
+              color: Theme.of(context).secondaryHeaderColor,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.orange.withOpacity(0.5),
+                  color: Theme.of(context).primaryColor.withOpacity(0.5),
                   blurRadius: 5,
                 )
               ]
@@ -65,18 +67,18 @@ import 'horizontal-space.dart';
                     children: [
                       Text(
                         product.price.toString(),
-                        style: TextStyle(color:Colors.green,fontWeight: FontWeight.bold, fontSize: 12),
+                        style: TextStyle(color:SUCCESS_COLOR,fontWeight: FontWeight.bold, fontSize: 12),
                       ),
                       Text(
                         " * ${product.quantity.toString()}  =  ",
-                        style: TextStyle(color:Colors.green,fontWeight: FontWeight.bold, fontSize: 12),
+                        style: TextStyle(color:SUCCESS_COLOR,fontWeight: FontWeight.bold, fontSize: 12),
                       ),
                       Text(
                         "${(product.price! * product.quantity!).toStringAsFixed(2)}",
-                        style: TextStyle(color:Colors.green,fontWeight: FontWeight.bold, fontSize: 12),
+                        style: TextStyle(color:SUCCESS_COLOR,fontWeight: FontWeight.bold, fontSize: 12),
                       ),
                       HorizontalSpacing(size: 3),
-                      FaIcon(FontAwesomeIcons.indianRupeeSign,size: 12,color:Colors.green),
+                      FaIcon(FontAwesomeIcons.indianRupeeSign,size: 12,color:SUCCESS_COLOR),
                       HorizontalSpacing(size: 3),
                     ],
                   ),
@@ -119,11 +121,13 @@ import 'horizontal-space.dart';
                       InkWell(
                           onTap: () async {
                             cartBloc.add(DeleteCartProductEvent(id: product.id!));
+                            cartBloc.add(FetchCartProductEvent());
+
                           },
                           child: Icon(
                             Icons.delete,
                             size: 35,
-                            color: Colors.red,
+                            color: RED_COLOR,
                           )
                       ),
                     ],

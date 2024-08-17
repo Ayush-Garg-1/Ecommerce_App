@@ -29,12 +29,12 @@ CustomDialog({context, required UserBloc userBloc}) {
       context: context,
       builder: (_) {
         return Dialog(
-          surfaceTintColor: Colors.white,
+          surfaceTintColor: Theme.of(context).secondaryHeaderColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16.0),
           ),
           elevation: 11,
-          backgroundColor: Colors.orange,
+          backgroundColor:  Theme.of(context).primaryColor,
           child: Container(
             height: 200,
             child: Row(
@@ -49,7 +49,7 @@ CustomDialog({context, required UserBloc userBloc}) {
                     child: Icon(
                       Icons.camera,
                       size: 50,
-                      color: Colors.white,
+                      color: Theme.of(context).secondaryHeaderColor,
                     ),
                   ),
                   GestureDetector(
@@ -60,7 +60,7 @@ CustomDialog({context, required UserBloc userBloc}) {
                     child: Icon(
                       Icons.camera_alt_rounded,
                       size: 50,
-                      color: Colors.white,
+                      color: Theme.of(context).secondaryHeaderColor,
                     ),
                   ),
                 ]),
@@ -82,16 +82,16 @@ productOrderDialog({context,required List<CartProductModel> products}) {
       context: context,
       builder: (_) {
         return Dialog(
-          surfaceTintColor: Colors.white,
+          surfaceTintColor: Theme.of(context).secondaryHeaderColor,
           elevation: 11,
-          backgroundColor: Colors.orange,
+          backgroundColor:  Theme.of(context).primaryColor,
           child:
           Container(
               height: 300,
               padding: EdgeInsets.symmetric(horizontal: 30,vertical: 20),
 
                 decoration: BoxDecoration(
-                  color: Colors.orange,
+                  color:  Theme.of(context).primaryColor,
                   borderRadius: BorderRadius.circular(50),
                 ),
 
@@ -102,7 +102,7 @@ productOrderDialog({context,required List<CartProductModel> products}) {
                   Text(
                     "SUMMARY",
                     style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold, fontSize: 21),
+                        color: Theme.of(context).secondaryHeaderColor, fontWeight: FontWeight.bold, fontSize: 21),
                   ),
                   SizedBox(
                     height: 30,
@@ -128,7 +128,7 @@ productOrderDialog({context,required List<CartProductModel> products}) {
                   SizedBox(
                     height: 25,
                   ),
-                  CommonButton(color: Colors.white,btnTextColor: Colors.orangeAccent,buttonText: "CHECKOUT",),
+                  CommonButton(color: Theme.of(context).secondaryHeaderColor,btnTextColor:  Theme.of(context).primaryColor,buttonText: "CHECKOUT",),
                 ],
               )),
         );

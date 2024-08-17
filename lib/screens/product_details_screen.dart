@@ -9,6 +9,7 @@ import '../../models/products_model.dart';
 import '../utils/appWidgetFunction/snackbar.dart';
 import '../utils/appWidgets/horizontal-space.dart';
 import '../utils/appWidgets/vertical_space.dart';
+import '../utils/themes/colors.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   ProductModel? product;
@@ -24,13 +25,14 @@ class ProductDetailsScreen extends StatelessWidget {
       child: Scaffold(
         body: BlocConsumer<CartBloc, CartState>(
           listener: (context, state) async {
+
             if (state is ProductAddSuccessState) {
               showCustomSnackbar(
                 context: context,
                 message: state.message,
-                color: Colors.orange,
+                color: Theme.of(context).primaryColor,
               );
-              await Future.delayed(Duration(milliseconds: 1700));
+              await Future.delayed(Duration(milliseconds: 1200));
               Navigator.pushReplacementNamed(context, "/layout-screen");
             }
           },
@@ -42,7 +44,7 @@ class ProductDetailsScreen extends StatelessWidget {
                     padding: EdgeInsets.only(bottom: 25, top: 20),
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height * 0.5,
-                    color: Colors.white,
+                    color: Theme.of(context).secondaryHeaderColor,
                     child: Column(
                       children: [
                         Padding(
@@ -52,7 +54,7 @@ class ProductDetailsScreen extends StatelessWidget {
                             children: [
                               CircleAvatar(
                                 radius: 15,
-                                backgroundColor: Colors.orange,
+                                backgroundColor: Theme.of(context).primaryColor,
                                 child: IconButton(
                                   onPressed: () {
                                     Navigator.pushReplacementNamed(
@@ -60,7 +62,7 @@ class ProductDetailsScreen extends StatelessWidget {
                                   },
                                   icon: Icon(
                                     Icons.arrow_back,
-                                    color: Colors.white,
+                                    color: Theme.of(context).secondaryHeaderColor,
                                     size: 15,
                                   ),
                                 ),
@@ -69,11 +71,11 @@ class ProductDetailsScreen extends StatelessWidget {
                                 width: 80,
                                 height: 40,
                                 decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: Theme.of(context).secondaryHeaderColor,
                                     borderRadius: BorderRadius.circular(30),
                                     boxShadow: [
                                       BoxShadow(
-                                          color: Colors.orange, blurRadius: 3)
+                                          color: Theme.of(context).primaryColor, blurRadius: 3)
                                     ]),
                                 child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -89,7 +91,7 @@ class ProductDetailsScreen extends StatelessWidget {
                                       SizedBox(
                                         width: 6,
                                       ),
-                                      Icon(Icons.star, color: Colors.orange),
+                                      Icon(Icons.star, color: Theme.of(context).primaryColor),
                                     ]),
                               )
                             ],
@@ -108,7 +110,7 @@ class ProductDetailsScreen extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.7),
+                        color: LITE_BLACK_COLOR,
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(40),
                             topRight: Radius.circular(40))),
@@ -125,13 +127,13 @@ class ProductDetailsScreen extends StatelessWidget {
                                 style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.white),
+                                    color: Theme.of(context).secondaryHeaderColor),
                               ),
                               Container(
                                   width: 150,
                                   height: 50,
                                   decoration: BoxDecoration(
-                                    color: Colors.orange,
+                                    color: Theme.of(context).primaryColor,
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   child: Center(
@@ -140,7 +142,7 @@ class ProductDetailsScreen extends StatelessWidget {
                                             ? "smart shop"
                                             : product!.brand.toString(),
                                         style: TextStyle(
-                                            color: Colors.white,
+                                            color: Theme.of(context).secondaryHeaderColor,
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold)),
                                   ))
@@ -151,14 +153,14 @@ class ProductDetailsScreen extends StatelessWidget {
                             product!.title.toString(),
                             style: TextStyle(
                                 fontSize: 16,
-                                color: Colors.white,
+                                color: Theme.of(context).secondaryHeaderColor,
                                 fontWeight: FontWeight.bold),
                           ),
                           VerticalSpacing(size: 25),
                           Container(
                             width: MediaQuery.of(context).size.width,
                             height: 2,
-                            color: Colors.orange,
+                            color: Theme.of(context).primaryColor,
                           ),
                           VerticalSpacing(size: 20),
                           Text(
@@ -167,7 +169,7 @@ class ProductDetailsScreen extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                                 fontSize: 14,
-                                color: Colors.white,
+                                color: Theme.of(context).secondaryHeaderColor,
                                 fontWeight: FontWeight.bold),
                           ),
                           VerticalSpacing(size: 15),
@@ -175,7 +177,7 @@ class ProductDetailsScreen extends StatelessWidget {
                             "${product!.warrantyInformation.toString()} & ${product!.returnPolicy.toString()}",
                             style: TextStyle(
                                 fontSize: 14,
-                                color: Colors.white,
+                                color: Theme.of(context).secondaryHeaderColor,
                                 fontWeight: FontWeight.bold),
                           ),
                           VerticalSpacing(size: 15),
@@ -184,9 +186,9 @@ class ProductDetailsScreen extends StatelessWidget {
                               Text(
                                 totalprice.toString(),
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: Theme.of(context).secondaryHeaderColor,
                                     decoration: TextDecoration.lineThrough,
-                                    decorationColor: Colors.white,
+                                    decorationColor: Theme.of(context).secondaryHeaderColor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16),
                               ),
@@ -194,14 +196,14 @@ class ProductDetailsScreen extends StatelessWidget {
                               Text(
                                 product!.price.toString(),
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: Theme.of(context).secondaryHeaderColor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20),
                               ),
                               HorizontalSpacing(size: 5),
                               FaIcon(
                                 FontAwesomeIcons.indianRupeeSign,
-                                color: Colors.white,
+                                color: Theme.of(context).secondaryHeaderColor,
                                 size: 17,
                               )
                             ],
@@ -210,7 +212,7 @@ class ProductDetailsScreen extends StatelessWidget {
                           Text(
                             "Min. ${product!.discountPercentage} Off",
                             style: TextStyle(
-                                color: Colors.orange,
+                                color: Theme.of(context).primaryColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 12),
                           ),
@@ -219,14 +221,14 @@ class ProductDetailsScreen extends StatelessWidget {
                             "Avaliable Stock : ${product!.stock}",
                             style: TextStyle(
                                 fontSize: 16,
-                                color: Colors.white,
+                                color: Theme.of(context).secondaryHeaderColor,
                                 fontWeight: FontWeight.bold),
                           ),
                           VerticalSpacing(size: 40),
                           Center(
                               child: CommonButton(
                             buttonText: "ADD TO CART",
-                            color: Colors.orange,
+                            color: Theme.of(context).primaryColor,
                             callback: () async {
                               context
                                   .read<CartBloc>()

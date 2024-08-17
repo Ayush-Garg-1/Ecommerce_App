@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../models/products_model.dart';
 import '../utils/appWidgetFunction/snackbar.dart';
+import '../utils/themes/colors.dart';
 
 class ExploreScreen extends StatelessWidget {
   @override
@@ -16,7 +17,7 @@ class ExploreScreen extends StatelessWidget {
           body: BlocConsumer<HomeBloc,HomeState>(
             listener:(context,state){
               if(state is ProductErrorState){
-                showCustomSnackbar(context: context,message:state.message,color: Colors.red);
+                showCustomSnackbar(context: context,message:state.message,color: RED_COLOR);
               }
             } ,
             builder: (context,state){
@@ -42,10 +43,10 @@ class ExploreScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                   boxShadow: [
                                     BoxShadow(
-                                        color: Colors.orange.withOpacity(0.4),
+                                        color: Theme.of(context).primaryColor.withOpacity(0.4),
                                         blurRadius: 5)
                                   ],
-                                  color: Colors.white,
+                                  color: Theme.of(context).secondaryHeaderColor,
                                   borderRadius: BorderRadius.circular(20)),
                               child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -76,10 +77,10 @@ class ExploreScreen extends StatelessWidget {
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
-                                        Icon(Icons.star, color: Colors.orange),
-                                        Icon(Icons.star, color: Colors.orange),
-                                        Icon(Icons.star, color: Colors.orange),
-                                        Icon(Icons.star_half, color: Colors.orange),
+                                        Icon(Icons.star, color: Theme.of(context).primaryColor),
+                                        Icon(Icons.star, color: Theme.of(context).primaryColor),
+                                        Icon(Icons.star, color: Theme.of(context).primaryColor),
+                                        Icon(Icons.star_half, color: Theme.of(context).primaryColor),
                                       ],
                                     ),
                                     SizedBox(
@@ -91,12 +92,12 @@ class ExploreScreen extends StatelessWidget {
                                       children: [
                                         Text("${product?.price.toString()}",
                                             style: TextStyle(
-                                                color: Colors.green,
+                                                color: SUCCESS_COLOR,
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold)),
                                         Icon(
                                           Icons.currency_rupee,
-                                          color: Colors.green,
+                                          color:SUCCESS_COLOR,
                                           size: 22,
                                         )
                                       ],

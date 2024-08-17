@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../models/products_model.dart';
+import '../themes/colors.dart';
 import 'Card_text.dart';
 
 class CustomCard extends StatelessWidget {
@@ -23,9 +24,9 @@ class CustomCard extends StatelessWidget {
           CustomText(text:"Price:${product.price}" ),
         ],),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).secondaryHeaderColor,
         boxShadow: [
-          BoxShadow(color: Colors.grey,blurRadius: 10
+          BoxShadow(color: GREY_COLOR,blurRadius: 10
           )
         ],
         borderRadius: BorderRadius.circular(20),

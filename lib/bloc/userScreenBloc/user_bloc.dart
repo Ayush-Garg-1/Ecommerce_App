@@ -25,13 +25,5 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     });
 
 
-    // on<EditUserEvent>((event, emit)async {
-    //   emit(LoadingState());
-    //   String? email = await SharedPreferenceService.getLoginUserEmail("email");
-    //   print(email);
-    //   UsersModel user = await DataBaseHelper().getLoginUserInfo(email!);
-    //   emit(LoadedUserState(user: user));
-    // });
-
   }
 }

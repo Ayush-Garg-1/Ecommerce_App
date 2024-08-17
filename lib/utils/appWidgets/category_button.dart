@@ -13,12 +13,12 @@ CategoryButton({this.btnText,this.icon,this.callback});
         onPressed: () {
         callback!();
         },
-        icon: Icon(icon, color: Colors.white),
+        icon: Icon(icon, color: Theme.of(context).secondaryHeaderColor),
         label: Text(btnText.toString().toUpperCase()
         ),
         style: ElevatedButton.styleFrom(
-          foregroundColor: Colors.white,
-          backgroundColor: Colors.orange,
+          foregroundColor: Theme.of(context).secondaryHeaderColor,
+          backgroundColor: Theme.of(context).primaryColor,
           padding: EdgeInsets.symmetric(horizontal: 18, vertical: 18),
           textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           shape: RoundedRectangleBorder(

@@ -8,6 +8,8 @@ import 'package:ecommerce/utils/appWidgets/dismisssible_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../utils/themes/colors.dart';
+
 class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -35,6 +37,7 @@ class CartScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           CartProductModel product = state.products[index];
           return CustomDismissibleWidget(
+            context: context,
             product: product,
             cartBloc: BlocProvider.of<CartBloc>(context),
           );
@@ -54,12 +57,12 @@ class CartScreen extends StatelessWidget {
             products: state.products,
           );
         },
-        foregroundColor: Colors.white,
-        backgroundColor: Colors.orange,
-        hoverColor: Colors.red,
+        foregroundColor: Theme.of(context).secondaryHeaderColor,
+        backgroundColor: Theme.of(context).primaryColor,
+        hoverColor: RED_COLOR,
         child: Icon(
           Icons.payments,
-          color: Colors.white,
+          color: Theme.of(context).secondaryHeaderColor,
           size: 30,
         ),
       );

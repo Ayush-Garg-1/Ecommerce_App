@@ -13,6 +13,7 @@ import '../utils/appWidgets/vertical_space.dart';
 
 import '../utils/appWidgets/button.dart';
 import '../utils/appWidgets/textfeild.dart';
+import '../utils/themes/colors.dart';
 
 class LoginScreen extends StatelessWidget {
   String email = "";
@@ -29,11 +30,11 @@ class LoginScreen extends StatelessWidget {
           listener: (context, state) async {
             if (state is AuthSuccessState) {
               await SharedPreferenceService.setLoginUserEmail("email", email);
-              showCustomSnackbar(context: context, message: state.message, color: Colors.green);
+              showCustomSnackbar(context: context, message: state.message, color: SUCCESS_COLOR);
               await Future.delayed(Duration(milliseconds: 1700));
               Navigator.pushReplacementNamed(context, "/layout-screen");
             } else if (state is AuthFailureState) {
-              showCustomSnackbar(context: context, message: state.message, color: Colors.red);
+              showCustomSnackbar(context: context, message: state.message, color: FAILURE_COLOR);
             }
           },
           builder: (context, state) {
@@ -45,7 +46,7 @@ class LoginScreen extends StatelessWidget {
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: [Color(0xfffda37e), Colors.orange],
+                    colors: [Theme.of(context).primaryColorDark, Theme.of(context).primaryColor],
                   ),
                 ),
                 child: SingleChildScrollView(
@@ -55,7 +56,7 @@ class LoginScreen extends StatelessWidget {
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height * 0.3,
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).secondaryHeaderColor,
                           borderRadius: BorderRadius.only(bottomRight: Radius.circular(120)),
                           image: DecorationImage(
                             image: AssetImage('assets/images/login.jpg'),
@@ -64,15 +65,15 @@ class LoginScreen extends StatelessWidget {
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.7,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+                            VerticalSpacing(size: 60),
                             Text(
                               'Welcome!',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: Colors.white,
+                                color:Theme.of(context).secondaryHeaderColor,
                                 fontSize: 40,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -107,17 +108,17 @@ class LoginScreen extends StatelessWidget {
                                       }
                                     },
                                   ),
-                                  SizedBox(height: 30),
-                                  SizedBox(height: 30),
+
+                                  SizedBox(height: 50),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      FaIcon(FontAwesomeIcons.google, size: 30, color: Colors.white),
-                                      FaIcon(FontAwesomeIcons.phone, size: 28, color: Colors.white),
-                                      FaIcon(FontAwesomeIcons.instagram, size: 30, color: Colors.white),
+                                      FaIcon(FontAwesomeIcons.google, size: 30, color:Theme.of(context).secondaryHeaderColor),
+                                      FaIcon(FontAwesomeIcons.phone, size: 28, color:Theme.of(context).secondaryHeaderColor),
+                                      FaIcon(FontAwesomeIcons.instagram, size: 30, color:Theme.of(context).secondaryHeaderColor),
                                     ],
                                   ),
-                                  SizedBox(height: 30),
+                                  SizedBox(height: 40),
                                   GestureDetector(
                                     onTap: () async {
                                       Navigator.pushReplacementNamed(context, "/signup-screen");
@@ -128,7 +129,7 @@ class LoginScreen extends StatelessWidget {
                                         style: TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.white,
+                                          color:Theme.of(context).secondaryHeaderColor,
                                         ),
                                         children: [
                                           TextSpan(
@@ -137,7 +138,7 @@ class LoginScreen extends StatelessWidget {
                                               fontSize: 15,
                                               decoration: TextDecoration.underline,
                                               fontWeight: FontWeight.bold,
-                                              color: Colors.white,
+                                              color:Theme.of(context).secondaryHeaderColor,
                                             ),
                                           ),
                                         ],
@@ -147,6 +148,7 @@ class LoginScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
+                            VerticalSpacing(size: 40),
                           ],
                         ),
                       ),

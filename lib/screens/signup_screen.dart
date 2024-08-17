@@ -7,6 +7,7 @@ import '../utils/appWidgetFunction/snackbar.dart';
 import '../utils/appWidgets/vertical_space.dart';
 import '../utils/appWidgets/button.dart';
 import '../utils/appWidgets/textfeild.dart';
+import '../utils/themes/colors.dart';
 
 class SignupScreen extends StatelessWidget {
   String email = "";
@@ -23,11 +24,11 @@ class SignupScreen extends StatelessWidget {
         body: BlocConsumer<AuthBloc, AuthState>(
           listener: (context, state) async {
             if (state is AuthSuccessState) {
-              showCustomSnackbar(context: context, message: state.message, color: Colors.green);
+              showCustomSnackbar(context: context, message: state.message, color: SUCCESS_COLOR);
               await Future.delayed(Duration(milliseconds: 1700));
               Navigator.pushReplacementNamed(context, "/login-screen");
             } else if (state is AuthFailureState) {
-              showCustomSnackbar(context: context, message: state.message, color: Colors.red);
+              showCustomSnackbar(context: context, message: state.message, color: FAILURE_COLOR);
             }
           },
           builder: (context, state) {
@@ -39,7 +40,7 @@ class SignupScreen extends StatelessWidget {
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: [Color(0xfffda37e), Colors.orange],
+                    colors: [Theme.of(context).primaryColorDark,Theme.of(context).primaryColor],
                   ),
                 ),
                 child: SingleChildScrollView(
@@ -50,7 +51,7 @@ class SignupScreen extends StatelessWidget {
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height * 0.3,
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).secondaryHeaderColor,
                           borderRadius: BorderRadius.only(bottomRight: Radius.circular(120)),
                           image: DecorationImage(
                             image: AssetImage('assets/images/signup.jpg'),
@@ -127,7 +128,7 @@ class SignupScreen extends StatelessWidget {
                                         style: TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.white,
+                                          color: Theme.of(context).secondaryHeaderColor,
                                         ),
                                         children: [
                                           TextSpan(
@@ -136,7 +137,7 @@ class SignupScreen extends StatelessWidget {
                                               fontSize: 15,
                                               decoration: TextDecoration.underline,
                                               fontWeight: FontWeight.bold,
-                                              color: Colors.white,
+                                              color: Theme.of(context).secondaryHeaderColor,
                                             ),
                                           ),
                                         ],

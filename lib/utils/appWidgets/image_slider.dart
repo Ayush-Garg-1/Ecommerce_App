@@ -16,7 +16,7 @@ class CustomImageCarouselSlider extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         decoration: BoxDecoration(
 
-            color: Colors.white, borderRadius: BorderRadius.circular(20)),
+            color: Theme.of(context).secondaryHeaderColor, borderRadius: BorderRadius.circular(20)),
         child: Stack(
           children: [
             Center(
@@ -32,10 +32,10 @@ class CustomImageCarouselSlider extends StatelessWidget {
                   width: 90,
                   height: 40,
                   decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Theme.of(context).secondaryHeaderColor,
                       borderRadius: BorderRadius.circular(30),
                       boxShadow: [
-                        BoxShadow(color: Colors.orange, blurRadius: 3)
+                        BoxShadow(color: Theme.of(context).primaryColor, blurRadius: 3)
                       ]),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -49,12 +49,12 @@ class CustomImageCarouselSlider extends StatelessWidget {
                         SizedBox(
                           width: 6,
                         ),
-                        Icon(Icons.star, color: Colors.orange),
+                        Icon(Icons.star, color: Theme.of(context).primaryColor),
                       ]),
                 ),
                 CircleAvatar(
                   radius: 15,
-                  backgroundColor: Colors.orange,
+                  backgroundColor: Theme.of(context).primaryColor,
                   child: IconButton(
                     onPressed: () {
                       Navigator.pushNamed(context, "/product-details-screen",arguments: product);
@@ -62,7 +62,7 @@ class CustomImageCarouselSlider extends StatelessWidget {
                     },
                     icon: Icon(
                       Icons.arrow_forward,
-                      color: Colors.white,
+                      color: Theme.of(context).secondaryHeaderColor,
                       size: 15,
                     ),
                   ),

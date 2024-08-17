@@ -26,7 +26,8 @@ class CustomTextFeild extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width*0.85,
       child: TextFormField(
-        style: TextStyle(color: Colors.white),
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        style: TextStyle(color:  Theme.of(context).secondaryHeaderColor),
         maxLength: maxLength,
         enabled: enable,
         keyboardType: keyBoardType,
@@ -56,24 +57,24 @@ class CustomTextFeild extends StatelessWidget {
 
           label: Text(
             label,
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color:  Theme.of(context).secondaryHeaderColor),
           ),
           contentPadding: EdgeInsets.symmetric(vertical: 22, horizontal: 15),
           disabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: Colors.white, width: 2),
+            borderSide: BorderSide(color:  Theme.of(context).secondaryHeaderColor, width: 2),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: Colors.white, width: 2),
+            borderSide: BorderSide(color:  Theme.of(context).secondaryHeaderColor, width: 2),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: Colors.white, width: 2),
+            borderSide: BorderSide(color:  Theme.of(context).secondaryHeaderColor, width: 2),
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: Colors.white, width: 2),
+            borderSide: BorderSide(color:  Theme.of(context).secondaryHeaderColor, width: 2),
           ),
         ),
       ),

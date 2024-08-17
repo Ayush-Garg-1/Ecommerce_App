@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/filterBloc/filter_bloc.dart';
 import '../bloc/filterBloc/filter_event.dart';
 import '../utils/appWidgetFunction/drawer.dart';
+import '../utils/themes/colors.dart';
 import 'filters_screen.dart';
 
 class LayoutScreen extends StatefulWidget {
@@ -32,76 +33,67 @@ class _LayoutScreenState extends State<LayoutScreen> {
       ),
       ProfileScreen()
     ];
-    return Scaffold(
-      appBar: AppBar(
-        leading: Builder(builder: (BuildContext context) {
-          return IconButton(
-            icon: const Icon(
-              Icons.menu,
-              size: 40,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-          );
-        }),
-        title: Text(
-         titles.elementAt(selectedIndex),
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+    return
+      Scaffold(
+        appBar: AppBar(
+          leading: Builder(builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(
+                Icons.menu,
+                size: 40,
+                color:Colors.white,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            );
+          }),
+          title: Text(
+            titles.elementAt(selectedIndex),
+            style: TextStyle(color: Theme.of(context).secondaryHeaderColor, fontWeight: FontWeight.bold),
+          ),
+          backgroundColor: Theme.of(context).primaryColor,
         ),
-        backgroundColor: Colors.orange,
-      ),
-      drawer: CustomDrawer(),
-      body: screens.elementAt(selectedIndex),
-      bottomNavigationBar: CurvedNavigationBar(
-        height: 70,
-
-        backgroundColor: Colors.transparent,
-        buttonBackgroundColor: Colors.red,
-        color: Colors.orange,
-        items: [
-          Icon(
-            Icons.home,
-            size: 30,
-            color: Colors.white,
-          ),
-          Icon(
-            Icons.explore_sharp,
-            size: 30,
-            color: Colors.white,
-          ),
-          Icon(
-            Icons.shopping_cart,
-            size: 30,
-            color: Colors.white,
-          ),
-          Icon(
-            Icons.filter_list,
-            size: 30,
-            color: Colors.white,
-          ),
-          Icon(
-            Icons.person,
-            size: 30,
-            color: Colors.white,
-          ),
-        ],
-        onTap: (index) {
-          selectedIndex = index;
-          setState(() {});
-        },
-      ),
-      // floatingActionButton: FloatingActionButton(
-      //     onPressed: () {},
-      //     foregroundColor: Colors.white,
-      //     backgroundColor: Colors.orange,
-      //     hoverColor: Colors.red,
-      //     child: Icon(
-      //       Icons.arrow_upward,
-      //       color: Colors.white,
-      //       size: 30,
-      //     )),
-    );
+        drawer: CustomDrawer(),
+        body: screens.elementAt(selectedIndex),
+        bottomNavigationBar: CurvedNavigationBar(
+          height: 70,
+          backgroundColor:TRANSPARENT_COLOR,
+          buttonBackgroundColor: RED_COLOR,
+          color: Theme.of(context).primaryColor,
+          items: [
+            Icon(
+              Icons.home,
+              size: 30,
+              color: Theme.of(context).secondaryHeaderColor,
+            ),
+            Icon(
+              Icons.explore_sharp,
+              size: 30,
+              color: Theme.of(context).secondaryHeaderColor,
+            ),
+            Icon(
+              Icons.shopping_cart,
+              size: 30,
+              color: Theme.of(context).secondaryHeaderColor,
+            ),
+            Icon(
+              Icons.filter_list,
+              size: 30,
+              color: Theme.of(context).secondaryHeaderColor,
+            ),
+            Icon(
+              Icons.person,
+              size: 30,
+              color: Theme.of(context).secondaryHeaderColor,
+            ),
+          ],
+          onTap: (index) {
+            setState(() {
+              selectedIndex = index;
+            });
+          },
+        ),
+      );
   }
 }

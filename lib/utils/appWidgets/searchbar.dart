@@ -25,14 +25,14 @@ class CustomSearchBar extends StatelessWidget {
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(50),
             borderSide: BorderSide(
-              color: Colors.orange,
+              color: Theme.of(context).primaryColor,
                   width: 3,
             ),
           ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(50),
               borderSide: BorderSide(
-                color: Colors.orange,
+                color: Theme.of(context).primaryColor,
                 width: 3,
               ),
             )

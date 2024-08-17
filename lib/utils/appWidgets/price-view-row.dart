@@ -13,12 +13,12 @@ class PriceViewRow extends StatelessWidget {
           Text(
             text!,
             style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
+                color: Theme.of(context).secondaryHeaderColor, fontWeight: FontWeight.bold, fontSize: 14),
           ),
           Text(
             price!,
             style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
+                color: Theme.of(context).secondaryHeaderColor, fontWeight: FontWeight.bold, fontSize: 14),
           )
         ]);
     ;

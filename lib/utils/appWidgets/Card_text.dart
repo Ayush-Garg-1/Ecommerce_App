@@ -8,7 +8,8 @@ class CustomText extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 5),
-      child: Text(text,maxLines: 2,overflow: TextOverflow.ellipsis,textAlign: TextAlign.center,style: TextStyle(fontSize: 16),),
+      child: Text(text,maxLines: 2,overflow: TextOverflow.ellipsis,textAlign: TextAlign.center,style:
+      TextStyle(fontSize: 16),),
     );
   }
 }

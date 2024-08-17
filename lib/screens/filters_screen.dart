@@ -60,14 +60,14 @@ class FilterScreen extends StatelessWidget {
                                     enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(50),
                                       borderSide: BorderSide(
-                                        color: Colors.orange,
+                                        color: Theme.of(context).primaryColor,
                                         width: 3,
                                       ),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(50),
                                       borderSide: BorderSide(
-                                        color: Colors.orange,
+                                        color: Theme.of(context).primaryColor,
                                         width: 3,
                                       ),
                                     )
@@ -80,8 +80,8 @@ class FilterScreen extends StatelessWidget {
                                 PopupMenuButton(
                                   child:CircleAvatar(
                                     radius: 25,
-                                    backgroundColor: Colors.orange,
-                                    child: Icon(Icons.filter_list,color: Colors.white,size: 30,),
+                                    backgroundColor: Theme.of(context).primaryColor,
+                                    child: Icon(Icons.filter_list,color: Theme.of(context).secondaryHeaderColor,size: 30,),
                                   ),
                                   onSelected: (value) async{
                                     context.read<FilterBloc>().add(
@@ -106,32 +106,32 @@ class FilterScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Center(
-                        child: Container(
-                          width: MediaQuery.of(context).size.width*0.9,
-                          child: RangeSlider(
-                            activeColor: Colors.orange,
-                            inactiveColor: Colors.orange.withOpacity(0.3),
-                            values: RangeValues(lowerValue, upperValue),
-                            labels: RangeLabels(
-                            '$lowerValue',
-                            '$upperValue',
-                          ),
-                            min: 0,
-                              max: 1500,
-                              divisions: 150,
-                              onChanged: (val) async{
-
-                                context.read<FilterBloc>().lowerValue = val.start;
-                                context.read<FilterBloc>().upperValue  = val.end;
-                                print(context.read<FilterBloc>().upperValue);
-
-                          }, ),
-                        ),
-                      ),
-                     VerticalSpacing(size: 20),
+                      // Center(
+                      //   child: Container(
+                      //     width: MediaQuery.of(context).size.width*0.9,
+                      //     child: RangeSlider(
+                      //       activeColor: Theme.of(context).primaryColor,
+                      //       inactiveColor: Theme.of(context).primaryColor.withOpacity(0.3),
+                      //       values: RangeValues(lowerValue, upperValue),
+                      //       labels: RangeLabels(
+                      //       '$lowerValue',
+                      //       '$upperValue',
+                      //     ),
+                      //       min: 0,
+                      //         max: 1500,
+                      //         divisions: 150,
+                      //         onChanged: (val) async{
+                      //
+                      //           context.read<FilterBloc>().lowerValue = val.start;
+                      //           context.read<FilterBloc>().upperValue  = val.end;
+                      //           print(context.read<FilterBloc>().upperValue);
+                      //
+                      //     }, ),
+                      //   ),
+                      // ),
+                     // VerticalSpacing(size: 20),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(10),
                         child: Text("Category Filter".toUpperCase(),style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
                       ),
                       VerticalSpacing(size: 10),
@@ -162,7 +162,7 @@ class FilterScreen extends StatelessWidget {
                         },
 
                       ),
-                      SizedBox(height: 20,),
+                      SizedBox(height: 30,),
                        Center(
                         child: Wrap(
                           direction: Axis.horizontal,
@@ -171,7 +171,11 @@ class FilterScreen extends StatelessWidget {
                           children:
                           state.products.map((product){
                             return
-                              CustomCard(product: product);
+                              InkWell(
+                                  onTap: (){
+                                    Navigator.pushReplacementNamed(context, "/product-details-screen",arguments:product);
+                                  },
+                                  child: CustomCard(product: product));
                           }).toList(),
                         ),
                       ),

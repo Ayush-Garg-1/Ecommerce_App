@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../models/products_model.dart';
+import '../themes/colors.dart';
 
 class CategoriesView extends StatelessWidget {
   List<ProductModel> products = [];
@@ -26,9 +27,9 @@ class CategoriesView extends StatelessWidget {
                 decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
-                          color: Colors.orange.withOpacity(0.4), blurRadius: 5)
+                          color:Theme.of(context).primaryColor, blurRadius: 5)
                     ],
-                    color: Colors.white,
+                    color: Theme.of(context).secondaryHeaderColor,
                     borderRadius: BorderRadius.circular(20)),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -66,7 +67,7 @@ class CategoriesView extends StatelessWidget {
                         children: [
                           Text("Price: ${product.price.toString()}",
                               style: TextStyle(
-                                  color: Colors.green,
+                                  color: SUCCESS_COLOR,
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold)),
                         ],

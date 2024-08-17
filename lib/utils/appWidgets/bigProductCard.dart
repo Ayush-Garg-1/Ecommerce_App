@@ -3,6 +3,8 @@ import 'package:ecommerce/utils/appWidgets/vertical_space.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../themes/colors.dart';
+
 class BigProductCard extends StatelessWidget {
   String? imageUrl;
   String? title;
@@ -18,7 +20,7 @@ class BigProductCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5),
       ),
-      color: Colors.white,
+      color:  Theme.of(context).secondaryHeaderColor,
       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center, children: [
@@ -64,7 +66,7 @@ class BigProductCard extends StatelessWidget {
         Text(
           "Min. $discount Off",
           style: TextStyle(
-              color: Color(0xff0eb013),
+              color: SUCCESS_COLOR,
               fontWeight: FontWeight.bold,
               fontSize: 17),
         ),

@@ -13,6 +13,7 @@ import '../utils/appWidgets/image_slider.dart';
 import '../utils/appWidgets/slider.dart';
 import '../utils/appWidgets/smallCard.dart';
 import '../utils/appWidgets/vertical_space.dart';
+import '../utils/themes/colors.dart';
 
 class HomeScreen extends StatelessWidget {
 
@@ -26,7 +27,7 @@ class HomeScreen extends StatelessWidget {
             BlocConsumer<HomeBloc,HomeState>(
                 listener:(context,state){
                   if(state is ProductErrorState){
-                    showCustomSnackbar(context: context,message:state.message,color: Colors.red);
+                    showCustomSnackbar(context: context,message:state.message,color: RED_COLOR);
                   }
                 } ,
               builder: (context,state){
@@ -36,12 +37,12 @@ class HomeScreen extends StatelessWidget {
                 return  Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height,
-                  // color: Colors.orange.withOpacity(0.2),
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                         colors: [
-                          Colors.red.withOpacity(0.3),
-                          Colors.yellow.withOpacity(0.3)
+                          LITE_RED_COLOR,
+                          LITE_YELLOW_COLOR
+
                         ],
                         begin:Alignment.topRight,
                         end: Alignment.bottomLeft
@@ -88,7 +89,7 @@ class HomeScreen extends StatelessWidget {
                                 return Container(
                                   width: MediaQuery.of(context).size.width,
                                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                                  color: Color(0xfffd93cd),
+                                  color: LITE_PINK,
                                   child: Column(children: [
                                     VerticalSpacing(size: 15),
                                     CardBoxHeading(heading:"Explore new selection"),

@@ -2,6 +2,8 @@ import 'package:ecommerce/utils/appWidgets/vertical_space.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../themes/colors.dart';
+
 class SmallProductCard extends StatelessWidget {
   String? imageUrl;
   String? title;
@@ -17,12 +19,12 @@ class SmallProductCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5),
       ),
-      color: Colors.white,
+      color:  Theme.of(context).secondaryHeaderColor,
       child: Column(children: [
         Container(
           width:MediaQuery.of(context).size.width ,
           height: MediaQuery.of(context).size.height*0.12,
-            color: Colors.red.withOpacity(0.1), child: Image.network(imageUrl!)
+            color: LITE_RED_COLOR1, child: Image.network(imageUrl!)
         ),
         VerticalSpacing(size: 5),
         Padding(
@@ -42,9 +44,9 @@ class SmallProductCard extends StatelessWidget {
          mainAxisAlignment: MainAxisAlignment.center,
          children: [ Text(
          "$content",
-         style: TextStyle(color:Colors.green,fontWeight: FontWeight.bold, fontSize: 12),
+         style: TextStyle(color:SUCCESS_COLOR,fontWeight: FontWeight.bold, fontSize: 12),
        ),
-         FaIcon(FontAwesomeIcons.indianRupeeSign,size: 12,color:Colors.green),],),
+         FaIcon(FontAwesomeIcons.indianRupeeSign,size: 12,color:SUCCESS_COLOR),],),
         SizedBox(
           height: 6,
         )
